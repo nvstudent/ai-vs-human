@@ -1,0 +1,138 @@
+/* Common Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+}
+
+.front-page {
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.intro-page {
+  background-color: #0b0c10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Robot Image */
+.robot-boss {
+  width: 150px;
+  height: 150px;
+  background: url('ai-assistant.png') no-repeat center;
+  background-size: contain;
+  margin: 30px 0;
+}
+
+/* Health Bar */
+.health-bar-container {
+  width: 60%;
+  background-color: #333;
+  border: 2px solid #555;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.health-bar {
+  width: 100%;
+  height: 25px;
+  background-color: #00ff00;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+/* Explanation */
+.explanation {
+  max-width: 700px;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+/* Button */
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #ff0040;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #cc0033;
+}
+
+/* Shake Effect */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-10px, 0); }
+  40% { transform: translate(10px, 0); }
+  60% { transform: translate(-10px, 0); }
+  80% { transform: translate(10px, 0); }
+  100% { transform: translate(0, 0); }
+}
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+.highlight-humans {
+    color: skyblue;
+}
+.highlight-ai {
+    color: Red;
+}
+.highlight-damage {
+    color: orangered;
+}
+  .choice-button {
+  margin: 8px;
+  padding: 10px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#ai-links button {
+  display: inline-block;
+  margin: 6px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: #222;
+  color: #fff;
+}
+
+#ai-links button:hover {
+  background-color: #444;
+}
+
+ul.references {
+  font-size: 0.9rem;
+  padding-left: 20px;
+  color: #fff;
+  list-style-type: none;
+}
+
+ul.references a {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+ul.references a:hover {
+  text-decoration: underline;
+}
+
+/* Fix for nested lists */
+ul.references.sublist {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 5px 0;
+}
