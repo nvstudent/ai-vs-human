@@ -12,7 +12,26 @@
   <p>
     The rise of AI robots has sparked a new battle. Will humanity prevail, or will machines claim dominance?
   </p>
-  <button onclick="window.location.href='intro.html'">Start the Battle</button>
+
+  <audio id="battlestart" src="battlestart.mp3" preload="auto"></audio>
+  <button onclick="startBattle()">Start the Battle</button>
+
+  <script>
+    function startBattle() {
+      const sound = document.getElementById("battlestart");
+      if (sound) {
+        sound.play().catch(() => {
+          // fallback if autoplay fails
+          window.location.href = 'intro.html';
+        });
+
+        // Give sound time to start before redirect
+        setTimeout(() => {
+          window.location.href = 'intro.html';
+        }, 2000); // adjust delay as needed
+      }
+    }
+  </script>
 
 </body>
 </html>

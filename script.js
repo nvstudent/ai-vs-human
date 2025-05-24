@@ -6,11 +6,15 @@ window.onload = () => {
   if (bar) {
     bar.style.width = currentHealth + '%';
   }
+  const introSound = document.getElementById("battlestart");
+  if (introSound) introSound.play();
 };
 
 function goNext() {
   const bar = document.getElementById('health-bar');
   const textBox = document.getElementById('battle-text');
+  const attackSound = document.getElementById("attack");
+  if (attackSound) attackSound.play();
 
   currentHealth -= 10;
   if (currentHealth < 0) currentHealth = 0;
@@ -26,13 +30,15 @@ function goNext() {
         <p>We used our instinct and fear to fight back. Humans adapt through emotion.</p>
       `;
     } else if (currentHealth === 80) {
+      const damageSound = document.getElementById("damage-taken");
+      if (damageSound) damageSound.play();
       textBox.innerHTML = `
         <p><strong class="highlight-damage">Oh no!</strong> You sustained damage, but your fear turned to strength.</p>
         <p>The AI is starting to understand—it lacks what drives us: experience.</p>
       `;
       document.body.classList.add('shake');
       setTimeout(() => {
-        document.body.classList.remove('shake');
+      document.body.classList.remove('shake');
       }, 400);
     } else if (currentHealth === 70) {
       textBox.innerHTML = `
@@ -57,10 +63,13 @@ function goNext() {
         <button id="accept-ai" class="choice-button">🤝 Accept AI</button>
         <button id="fight-ai" class="choice-button">⚔️ Fight Back</button>
       `;
-
+      document.getElementById("attack-btn").style.display = "none";
+      document.getElementById("scan-btn").style.display = "none";
       aiJustHealed = false; // Reset the flag after showing choices
 
       document.getElementById("accept-ai").onclick = () => {
+        const winSound = document.getElementById("win");
+        if (winSound) winSound.play();
         textBox.innerHTML = `
           <p><strong>You paused...</strong></p>
           <p>Instead of resisting, you acknowledged AI as part of the world.</p>
@@ -68,31 +77,32 @@ function goNext() {
           <p><strong>Ending: Peace Achieved 🤝</strong></p>
           <hr>
           <p><strong>Want to learn more about AI?</strong></p>
-          <button onclick="window.open('https://en.wikipedia.org/wiki/Artificial_intelligence', '_blank')">🔍 Learn About AI</button>
-          <button onclick="window.open('https://plato.stanford.edu/entries/artificial-intelligence/', '_blank')">📚 History of AI</button>
-          <button onclick="window.open('https://www.imdb.com/list/ls045904068/', '_blank')">🎬 AI in Movies</button>
-          <button onclick="window.open('https://openai.com/dall-e', '_blank')">🖼️ AI Generative Tools</button>
-          <button onclick="window.open('https://www.ibm.com/cloud/learn/what-is-artificial-intelligence', '_blank')">⚙️ How AI Works</button>
-    
-         <h2 style="margin-top: 40px;">📚 References</h2>
-        <ul class="references">
-          <li><strong>Robot Boss Image & Icons:</strong> <a href="https://www.flaticon.com/free-icon/robot_4712027" target="_blank">Flaticon – Robot Icon, </a><a href="https://emojipedia.org/" target="_blank">Emojis</a></li>
-
-          <li><strong>HTML, CSS, JavaScript Docs:</strong> <a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a></li>
-          <li><strong>Flexbox Guide:</strong> <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">CSS-Tricks – Flexbox</a></li>
-          <li><strong>CSS Animations:</strong> <a href="https://www.w3schools.com/css/css3_animations.asp" target="_blank">W3Schools – Animations</a></li>
-          <li><strong>JavaScript DOM API:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById" target="_blank">MDN – getElementById()</a></li>
-
-          <li><strong>Artificial Intelligence Overview:</strong> <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank">Wikipedia – Artificial Intelligence</a></li>
-          <li><strong>Philosophical Background:</strong> <a href="https://plato.stanford.edu/entries/artificial-intelligence/" target="_blank">Stanford Encyclopedia of Philosophy – Artificial Intelligence</a></li>
-          <li><strong>IBM's AI Guide:</strong> <a href="https://www.ibm.com/cloud/learn/what-is-artificial-intelligence" target="_blank">IBM – What is AI?</a></li>
-          <li><strong>Ethical and Social Perspective:</strong> <a href="https://scottambler.com/fight-back-against-ai/" target="_blank">Scott Ambler – Fight Back Against AI</a></li>
-          <li><strong>AI Tools: </strong><a href="https://openai.com/dall-e" target="_blank">OpenAI – DALL·E (Image Generator), </a><a href="https://chat.openai.com/" target="_blank">OpenAI – ChatGPT (AI Chat Model)</a></li>
-
-          <li><strong>AI in Movies:</strong> <a href="https://www.imdb.com/list/ls045904068/" target="_blank">IMDb – AI in Movies</a></li>
-
+          <div>
+          <button class="resource-button" onclick="window.open('https://en.wikipedia.org/wiki/Artificial_intelligence', '_blank')">🔍 Learn About AI</button>
+          <button class="resource-button" onclick="window.open('https://plato.stanford.edu/entries/artificial-intelligence/', '_blank')">📚 History of AI</button>
+          <button class="resource-button" onclick="window.open('https://www.imdb.com/list/ls045904068/', '_blank')">🎬 AI in Movies</button>
+          <button class="resource-button" onclick="window.open('https://openai.com/dall-e', '_blank')">🖼️ AI Generative Tools</button>
+          <button class="resource-button" onclick="window.open('https://www.ibm.com/cloud/learn/what-is-artificial-intelligence', '_blank')">⚙️ How AI Works</button>
+          <button class="resource-button" onclick="window.open('https://insights.sei.cmu.edu/blog/weaknesses-and-vulnerabilities-in-modern-ai-integrity-confidentiality-and-governance/', '_blank')">❎ AI Weakness</button>
           
-        </ul>
+          </div>
+          <h2 style="margin-top: 40px;">📚 References</h2>
+          <ul class="references">
+            <li><strong>Robot Boss Image & Icons:</strong> <a href="https://www.flaticon.com/free-icon/robot_4712027" target="_blank">Flaticon – Robot Icon, </a><a href="https://emojipedia.org/" target="_blank">Emojis</a></li>
+
+            <li><strong>HTML, CSS, JavaScript Docs:</strong> <a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a></li>
+            <li><strong>Flexbox Guide:</strong> <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">CSS-Tricks – Flexbox</a></li>
+            <li><strong>CSS Animations:</strong> <a href="https://www.w3schools.com/css/css3_animations.asp" target="_blank">W3Schools – Animations</a></li>
+            <li><strong>JavaScript DOM API:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById" target="_blank">MDN – getElementById()</a></li>
+
+            <li><strong>Artificial Intelligence Overview:</strong> <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank">Wikipedia – Artificial Intelligence</a></li>
+            <li><strong>Philosophical Background:</strong> <a href="https://plato.stanford.edu/entries/artificial-intelligence/" target="_blank">Stanford Encyclopedia of Philosophy – Artificial Intelligence</a></li>
+            <li><strong>IBM's AI Guide:</strong> <a href="https://www.ibm.com/cloud/learn/what-is-artificial-intelligence" target="_blank">IBM – What is AI?</a></li>
+            <li><strong>Ethical and Social Perspective:</strong> <a href="https://scottambler.com/fight-back-against-ai/" target="_blank">Scott Ambler – Fight Back Against AI</a></li>
+            <li><strong>AI Tools: </strong><a href="https://openai.com/dall-e" target="_blank">OpenAI – DALL·E (Image Generator), </a><a href="https://chat.openai.com/" target="_blank">OpenAI – ChatGPT (AI Chat Model)</a></li>
+
+            <li><strong>AI in Movies:</strong> <a href="https://www.imdb.com/list/ls045904068/" target="_blank">IMDb – AI in Movies</a></li>
+          </ul>
 
 
         `;
@@ -100,11 +110,17 @@ function goNext() {
         document.querySelector("button").innerText = "Peace Achieved";
       };
 
-      document.getElementById("fight-ai").onclick = () => {
+        document.getElementById("fight-ai").onclick = () => {
+        const gameOverSound = document.getElementById("gameOverSound");
+        if (gameOverSound) gameOverSound.play();
+        document.body.classList.add("shake-hard", "flash", "fade-out-body");
+        setTimeout(() => document.body.classList.remove("shake-hard", "flash"), 800);
+        
         textBox.innerHTML = `
           <p><strong>You chose to fight.</strong></p>
-          <p>"This is not hate. This is human determination."</p>
-          <p>The battle continues...</p>
+          <p>"You have made the wrong choice..."</p>
+          <p>AI Wins...<strong class="highlight-damage">Game Over</strong></p>
+
         `;
         currentHealth = 30;
         if (bar) bar.style.width = currentHealth + '%';
@@ -144,19 +160,31 @@ function goNext() {
       `;
       document.querySelector("button").disabled = true;
       document.querySelector("button").innerText = "AI Defeated";
+
     }
   }
 }
 function loadMessage() {
-  console.log("AJAX button clicked");
-  fetch('message1.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('battle-text').innerHTML = data;
-    })
-    .catch(error => {
-      console.error("Fetch error:", error);
-      document.getElementById('battle-text').innerHTML = '<p>Error loading message.</p>';
-    });
+  const infoSound = document.getElementById("info");
+  if (infoSound) infoSound.play();
+
+  document.getElementById('battle-text').innerHTML = `
+    <p><strong>🔍 AI Weaknesses Identified:</strong></p>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>✅ Adversarial attacks can mislead it.</li>
+      <li>✅ May expose confidential data from training.</li>
+      <li>✅ Lacks empathy, memory, and context.</li>
+      <li>✅ Ethical reasoning is limited to programmed logic.</li>
+      <li>✅ Dependent on data quality — biased data = biased AI.</li>
+      <li>✅ Cannot make intuitive leaps like humans can.</li>
+      <li>✅ Vulnerable to hallucinating false information.</li>
+      <li>✅ Fails under ambiguity or conflicting instructions.</li>
+      <li>✅ Susceptible to prompt injection and manipulation.</li>
+    </ul>
+    <p>Emotions are a strength. Humans endure because we feel.</p>
+  `;
 }
+
+
+
 
