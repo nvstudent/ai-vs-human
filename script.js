@@ -147,3 +147,16 @@ function goNext() {
     }
   }
 }
+function loadMessage() {
+  console.log("AJAX button clicked");
+  fetch('message1.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('battle-text').innerHTML = data;
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+      document.getElementById('battle-text').innerHTML = '<p>Error loading message.</p>';
+    });
+}
+
