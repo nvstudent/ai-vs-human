@@ -28,7 +28,7 @@ function goNext() {
         <p>We used our instinct and fear to fight back. Humans adapt through emotion.</p>
       `;
     } else if (currentHealth === 80) {
-      const damageSound = document.getElementById("damage-taken");
+      const damageSound = document.getElementById("damage");
       if (damageSound) damageSound.play();
       textBox.innerHTML = `
         <p><strong class="highlight-damage">Oh no!</strong> You sustained damage, but your fear turned to strength.</p>
@@ -66,7 +66,7 @@ function goNext() {
       aiJustHealed = false; // Reset the flag after showing choices
 
       document.getElementById("accept-ai").onclick = () => {
-        const winSound = document.getElementById("");
+        const winSound = document.getElementById("win");
         if (winSound) winSound.play();
         textBox.innerHTML = `
           <p><strong>You paused...</strong></p>
