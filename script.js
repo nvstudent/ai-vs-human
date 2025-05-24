@@ -6,8 +6,6 @@ window.onload = () => {
   if (bar) {
     bar.style.width = currentHealth + '%';
   }
-  const introSound = document.getElementById("battlestart");
-  if (introSound) introSound.play();
 };
 
 function goNext() {
@@ -68,7 +66,7 @@ function goNext() {
       aiJustHealed = false; // Reset the flag after showing choices
 
       document.getElementById("accept-ai").onclick = () => {
-        const winSound = document.getElementById("win");
+        const winSound = document.getElementById("");
         if (winSound) winSound.play();
         textBox.innerHTML = `
           <p><strong>You paused...</strong></p>
